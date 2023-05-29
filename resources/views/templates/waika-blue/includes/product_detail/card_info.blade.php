@@ -66,6 +66,11 @@
                     {{-- Show price --}}
                     <div class="d-flex flex-column gap-2">
                         <div class="single-product-price" id="product-detail-price">
+                            @if (sc_config('customer_pagar_al_contado'))
+                            {!! $product->showPriceDetail() !!}
+                            @endif
+
+                            @if (sc_config('customer_Financiamiento'))
                             @php
                             $product->nro_coutas = $product->nro_coutas == 0 ? 1 : $product->nro_coutas; 
                             $product->price_con_inicial = ($product->price-$product->monto_inicial - $product->monto_cuota_entrega);
@@ -121,6 +126,8 @@
                             </span>
                             @endif
                         </div>
+                        @endif
+                       
                         
                         <p class="extract__product">
                             {{ $product->description}}
@@ -131,7 +138,7 @@
                         <div class="d-grid gap-2">
                             @if (sc_config('customer_pagar_al_contado'))
                                 <button class="btn btn-primary rounded-pill"
-                                    onclick="validachecke1(), validachecke1()"
+                                onclick="validachecke1()"
                                     id="descotado"
                                     name="Des_contado"
                                     type="button"
@@ -145,12 +152,14 @@
                                 class="pedido p-3  text-white " 
                                 name="Financiamiento"
                             >Calcular Solicitud</button> --}}
+                            @if (sc_config('customer_Financiamiento'))
                             <button
                                 onclick="validachecke2() ,gen_table()" 
                                 name="Financiamiento"
                                 type="button" class="btn btn-themes rounded-pill pedido" data-bs-toggle="modal" data-bs-target="#formModal">
                                 Calcular Solicitud
                               </button>
+                              @endif
                         </div>
 
                         <div class="messages">

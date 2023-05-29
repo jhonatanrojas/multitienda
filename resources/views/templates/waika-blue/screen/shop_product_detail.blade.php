@@ -712,6 +712,22 @@ if(n2 > 0 &&  product_nro_coutas == 1){
 
     }
 
+    function validachecke1(){
+            
+            let msg = document.getElementById('msg').style.display = "none";
+            const group = document.getElementById("group").style.display = "block"
+            var stylies = document.getElementById("descotado")
+            
+            stylies.classList.replace("btn-primary", "btn-success")
+
+            var finansiamiento = document.getElementById("finansiamiento");
+
+            finansiamiento.classList.replace("btn-success", "btn-primary")
+            
+        
+        
+        };
+
         document.getElementById('msg').style.display = "none";
         document.getElementById("group").style.display = "none";
       function validachecke2(){

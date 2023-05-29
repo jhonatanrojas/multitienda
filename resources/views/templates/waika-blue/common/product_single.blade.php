@@ -6,6 +6,7 @@
   </figure>
     
     <div class="card-body">
+      @if (sc_config('customer_Financiamiento'))
         @php
         $product->nro_coutas=$product->nro_coutas == 0 ? 1 : $product->nro_coutas; 
           if( $product->precio_de_cuota > 0 ):
@@ -54,23 +55,27 @@
   
           
   
-        @else
-        {!! $product->showPrice() !!} 
+       
+        @endif
+
         @endif
 
         <h3 class="card-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h3>
         {!! $product->displayVendor() !!}
 
-      {{-- @if (empty($hiddenStore))
+      @if (empty($hiddenStore))
       {!! $product->displayVendor() !!}
-      @endif --}}
+      @endif 
 
       {{-- @if ($product->allowSale() && !sc_config('product_cart_off'))
       <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
         <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
       @endif --}}
 
-      {{-- {!! $product->showPrice() !!} --}}
+
+     
+
+      {!! $product->showPrice() !!} 
 
     </div>
 
@@ -80,13 +85,13 @@
     @endif --}}
 
 
-     {{-- @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
+     @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
     <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
     @elseif($product->kind == SC_PRODUCT_BUILD)
     <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
     @elseif($product->kind == SC_PRODUCT_GROUP)
     <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
-    @endif --}}
+    @endif 
     
     <div class="product-button-wrap">
       

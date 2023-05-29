@@ -617,7 +617,7 @@ class ShopCartController extends RootFrontController
            $datos = [
             'modalidad_de_compra' => $card_detalle->financiamiento,
             'fecha_primer_pago' => $card_detalle->fecha ,
-            'monto_Inicial' => $card_detalle->monto_Inicial,
+            'monto_Inicial' => $card_detalle->monto_Inicial ?? 0,
             'monto_de_la_cuota' => $card_detalle->$monto_de_la_cuota
            ];
 
@@ -751,7 +751,7 @@ class ShopCartController extends RootFrontController
             $arrDetail['nro_coutas']  = $cartItem->Cuotas;
             $arrDetail['id_modalidad_pago']  = $cartItem->modalidad_pago;
             $arrDetail['abono_inicial']  =   $porcentaje ;
-            $arrDetail['monto_Inicial']  =    $cartItem->monto_Inicial ;
+            $arrDetail['monto_Inicial']  =    $cartItem->monto_Inicial ?? 0;
             $arrDetail['monto_de_la_cuota'] = $cartItem->monto_de_la_cuota;
 
 
@@ -823,14 +823,6 @@ class ShopCartController extends RootFrontController
     {
         $data      = request()->all();
 
-
-
-       
-
-       
-
-      
-     
         $this->clearCartStore();
           
         //Process escape
@@ -843,11 +835,6 @@ class ShopCartController extends RootFrontController
      
         if(isset($data['financiamiento'])
             == '1'){
-
-
-               
-
-
             $productId = $data['product_id'];
             $qty       = $data['qty'] ?? 0;
             $storeId   = $data['storeId'] ?? config('app.storeId');
@@ -857,7 +844,7 @@ class ShopCartController extends RootFrontController
             $fecha = $data['fecha'] ?? '';
             $inicial = $data['monto_Inicial'];
             $monto_de_la_cuota =$data['monto_de_la_cuota'];
-            $monto_Inicial = $data['monto_Inicial'];
+            $monto_Inicial = $data['monto_Inicial'] ?? 0;
             // calcular porcentaje a partir del monto de la in
 
             
@@ -874,7 +861,7 @@ class ShopCartController extends RootFrontController
             $Cuotas = $data['Cuotas'] ?? 0;
             $modalidad_pago = $data['modalidad_pago']  == 'Quincenal'? '2':'3' ;
             $storeId   = $data['storeId'] ?? config('app.storeId');
-            $monto_Inicial = $data['monto_Inicial'];
+            $monto_Inicial = $data['monto_Inicial'] ?? 0;
         }
 
 

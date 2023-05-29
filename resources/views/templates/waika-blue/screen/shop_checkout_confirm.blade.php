@@ -109,6 +109,7 @@
                                             </td>
                                    
                                             <td>{{ $item->qty }}</td>
+                                            @if (sc_config('customer_Financiamiento'))
                                             <td>
                                                 @php
 
@@ -146,7 +147,7 @@
                                                 
                                                 @endphp
 
-                                                @if( $product->precio_de_cuota )
+                                                @if( $product->precio_de_cuota && $cart[0]->financiamiento ==  2 )
 
                                                     {{$Precio_cuota}}
 
@@ -174,6 +175,10 @@
                                             @if ($cart[0]->financiamiento != '1' &&  $cart[0]->financiamiento != '2')
                                                 <td>{{ sc_currency_render($item->subtotal) }}</td>
                                             @endif
+
+                                            @endif
+                                            <td>123</td>
+                                            <td>123</td>
                                         </tr>
                                         {{-- // Render product in cart --}}
                                     @endforeach

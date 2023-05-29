@@ -159,15 +159,16 @@ class ShopProduct extends Model
         }
         $priceFinal = $this->getFinalPrice();
         $price = $this->price;
-        $nro_coutas= $this->nro_coutas == 0 ? 1 : $this->nro_coutas;
+
+        if (sc_config('customer_Financiamiento')){
+            $nro_coutas= $this->nro_coutas == 0 ? 1 : $this->nro_coutas;
         if( $this->precio_de_cuota){
             $price=  ($price - $this->monto_inicial) -  $this->monto_cuota_entrega;
             $price= number_format($price/  $nro_coutas,2);
             $priceFinal =  $priceFinal - $this->monto_inicial;
             $priceFinal= number_format($priceFinal/  $nro_coutas,2);
         }
-      
-     
+        }
         // Process with tax
         return  view(
             'templates.'.sc_store('template').'.common.show_price',
@@ -175,8 +176,8 @@ class ShopProduct extends Model
                 'price' => $price,
                 'priceFinal' => $priceFinal,
                 'kind' => $this->kind,
-                'precio_de_cuota' => $this->precio_de_cuota,
-                'nro_coutas' =>  $nro_coutas,
+                'precio_de_cuota' => $this->precio_de_cuota ?? 0,
+                'nro_coutas' =>  $nro_coutas ?? 0,
             ]
         )->render();
     }

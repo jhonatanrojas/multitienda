@@ -15,6 +15,8 @@
 
 
     </style>
+
+@if (sc_config('customer_Financiamiento'))
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -135,3 +137,5 @@
       </div>
     </div>
 </div>
+
+@endif
